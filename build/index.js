@@ -11,8 +11,12 @@ const cart_routes_1 = __importDefault(require("./src/cart.routes"));
 const suppliers_routes_1 = __importDefault(require("./src/suppliers.routes"));
 const categories_routes_1 = __importDefault(require("./src/categories.routes"));
 const order_routes_1 = __importDefault(require("./src/order.routes"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({
+    origin: '*',
+}));
 app.use('/api', products_routes_1.default);
 app.use('/api', profiles_routes_1.default);
 app.use('/api', cart_routes_1.default);

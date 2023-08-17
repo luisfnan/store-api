@@ -5,9 +5,14 @@ import cartRoutes from './src/cart.routes';
 import suppliersRoutes from './src/suppliers.routes';
 import categoriesRoutes from './src/categories.routes';
 import orderRoutes from './src/order.routes';
+import cors from 'cors'
+
 
 const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: '*',
+}))
 
 app.use('/api', productsRoutes);
 app.use('/api', profilesRoutes);

@@ -27,8 +27,8 @@ router.post('/products', (req, res) => __awaiter(void 0, void 0, void 0, functio
     });
     res.json(newProduct);
 }));
-router.get('/products/:sku', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const productId = Number(req.params.sku);
+router.get('/products/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const productId = parseInt(req.params.id);
     const productFound = yield prisma.product.findUnique({
         where: { id: productId },
         include: {

@@ -23,20 +23,20 @@ router.post('/profile', (req, res) => __awaiter(void 0, void 0, void 0, function
     });
     res.json(newProfile);
 }));
-router.get('/profile/:username', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userName = req.params.username;
+router.get('/profile/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
     const userFound = yield prisma.user.findUnique({
-        where: { username: userName }
+        where: { id: id }
     });
     if (!userFound) {
         return res.status(404).json({ error: "Profile not found" });
     }
     res.json(userFound);
 }));
-router.put('/profile/:username', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userName = req.params.username;
+router.put('/profile/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
     const userFound = yield prisma.user.update({
-        where: { username: userName },
+        where: { id: id },
         data: req.body
     });
     if (!userFound) {
@@ -44,10 +44,10 @@ router.put('/profile/:username', (req, res) => __awaiter(void 0, void 0, void 0,
     }
     res.json(userFound);
 }));
-router.delete('/profile/:username', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userName = req.params.username;
+router.delete('/profile/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
     const userFound = yield prisma.user.delete({
-        where: { username: userName },
+        where: { id: id },
     });
     if (!userFound) {
         return res.status(404).json({ error: "Profile not found" });

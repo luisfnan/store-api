@@ -16,10 +16,10 @@ router.post('/profile', async (req, res) => {
     res.json(newProfile);
 });
 
-router.get('/profile/:username', async (req, res) => {
-    const userName = req.params.username
+router.get('/profile/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
     const userFound = await prisma.user.findUnique({
-        where: { username: userName }
+        where: { id: id }
     });
     if (!userFound) {
         return res.status(404).json({ error: "Profile not found" });
@@ -27,10 +27,10 @@ router.get('/profile/:username', async (req, res) => {
     res.json(userFound);
 });
 
-router.put('/profile/:username', async (req, res) => {
-    const userName = req.params.username
+router.put('/profile/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
     const userFound = await prisma.user.update({
-        where: { username: userName },
+        where: { id: id },
         data: req.body
     });
     if (!userFound) {
@@ -39,10 +39,10 @@ router.put('/profile/:username', async (req, res) => {
     res.json(userFound);
 });
 
-router.delete('/profile/:username', async (req, res) => {
-    const userName = req.params.username
+router.delete('/profile/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
     const userFound = await prisma.user.delete({
-        where: { username: userName },
+        where: { id: id },
     });
     if (!userFound) {
         return res.status(404).json({ error: "Profile not found" });

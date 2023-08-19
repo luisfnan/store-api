@@ -20,8 +20,8 @@ router.post('/products', async (req, res) => {
     res.json(newProduct);
 });
 
-router.get('/products/:sku', async (req, res) => {
-    const productId = Number(req.params.sku)
+router.get('/products/:id', async (req, res) => {
+    const productId = parseInt(req.params.id)
     const productFound = await prisma.product.findUnique({
         where: { id: productId },
         include: {
